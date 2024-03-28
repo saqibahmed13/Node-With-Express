@@ -16,7 +16,12 @@ console.log("newba", users[0].kidneys.length);
 
 
 
-app.use(express.json());
+app.use(express.json());     // this is a middle ware where express.json means it takes a function and adds in app.post as a middleware
+                            // what ever comes below it will add middleware there in body
+
+// In simpler terms, app.use(express.json()) ensures that your Express application can handle JSON data 
+// sent in the request body of incoming HTTP requests. 
+// It's a common practice when building APIs where data is often sent and received in JSON format.
 
 app.get("/", function(req, res) {
     const johnKidneys = users[0].kidneys;      // false
