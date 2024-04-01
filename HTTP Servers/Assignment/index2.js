@@ -75,7 +75,7 @@ app.delete("/", function(req, res) {
         for (let i = 0; i<users[0].kidneys.length; i++) {
             if (users[0].kidneys[i].healthy) {
                 newKidneys.push({
-                    healthy: true
+                    healthy: true 
                 })
             }
         }
