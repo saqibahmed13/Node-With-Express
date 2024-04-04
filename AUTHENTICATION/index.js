@@ -6,7 +6,7 @@ const app = express();
 
 app.use(express.json())
 
-
+// the below code is in memory we have created  with user name and passwords
 const ALL_USERS = [
   {
     username: "harkirat@gmail.com",
@@ -25,8 +25,9 @@ const ALL_USERS = [
   },
 ];
 
-function userExists(username, password) {
 
+// if the above user exsit returns true else false
+function userExists(username, password) {
 let userExists = false;
 for(let i=0; i<ALL_USERS.length; i++){
     if(ALL_USERS[i].username==username && ALL_USERS[i].password==password){
@@ -46,19 +47,22 @@ app.post("/signin", function (req, res) {
     });
   }
 
-  let token = jwt.sign({ username: username }, jwtPassword);
+  let token = jwt.sign({ username: username }, jwtPassword);    
   return res.json({
     token,
   });
 });
 
+
+
 app.get("/users", function (req, res) {
   const token = req.headers.authorization;
   try {
-    const decoded = jwt.verify(token, jwtPassword);
+    // the below code showns the jwt takes username as input along with jwtPassword for verification
+    const decoded = jwt.verify(token, jwtPassword);  
     const username = decoded.username;
     res.json({
-        msg:ALL_USERS.filter((value)=>{
+        msg:ALL_USERS.filter((value)=>{        // it will filter the current username and gives the other users
             if(value.username == username){
                 return false;
             }else{
